@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/AdminStudentsV1.2">
+  <Realm className="org.apache.catalina.realm.JDBCRealm" connectionName="cristal" connectionPassword="oracle" connectionURL="jdbc:oracle:thin:@//localhost:1521/xe" debug="99" driverName="oracle.jdbc.driver.OracleDriver" roleNameCol="rolename" userCredCol="password" userNameCol="username" userRoleTable="userrole" userTable="userpass"/>
+</Context>

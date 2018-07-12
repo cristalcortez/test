@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    
+    <context-param>
+        <param-name>configFile</param-name>
+        <param-value>C:/configFile.properties</param-value>
+    </context-param>
+    
+    <filter>
+        <filter-name>Login</filter-name>
+           <filter-class>filter.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Login</filter-name>
+            <url-pattern>/Student</url-pattern>
+    </filter-mapping>
+    
+    <welcome-file-list>
+        <welcome-file>Student</welcome-file>
+    </welcome-file-list>
+    
+    <servlet>
+        <servlet-name>StudentController</servlet-name>
+        <servlet-class>controller.StudentController</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>StudentController</servlet-name>
+        <url-pattern>/Student</url-pattern>
+    </servlet-mapping>
+    
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Protected Area</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Public Area</web-resource-name>
+            <url-pattern>/signin/*</url-pattern>
+        </web-resource-collection>
+        <!-- No auth-constraint means everybody has access! -->
+    </security-constraint>
+    
+    <!-- FORM based authentication -->
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/signin/login.html</form-login-page>
+            <form-error-page>/signin/error.html</form-error-page>
+        </form-login-config>
+    </login-config>
+    
+    <listener>
+        <listener-class>util.InitServlet</listener-class>
+    </listener>
+
+</web-app>
